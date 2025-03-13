@@ -1,0 +1,72 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    padding: 0 5%;
+    overflow: hidden; /* Evita que a imagem ultrapasse a área */
+    color: var(--fth-color);
+}
+
+.headerContentRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    z-index: 1;
+    padding: 20px;
+    width: 50%; /* Define a largura do texto */
+}
+
+.headerContentRight h1 {
+    font-size: 4rem;
+    margin: 0;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.headerContentRight p {
+    font-size: 1.8rem;
+    margin-top: 50px;
+    position: relative;
+    top: 100px;
+}
+
+.txtHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+    width: 100%;
+    padding-left: 5%;
+}
+
+.btnHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+    padding-left: 5%;
+    position: relative;
+    top: 120px;
+}
+
+.asideLeft {
+    position: relative;
+    top: 0;
+    left: 100px; /* Cola a imagem no canto direito */
+    width: 50%; /* Faz a imagem preencher o espaço restante */
+    height: 100%;
+    z-index: -1; /* Move a imagem para o fundo */
+}
+
+.image {
+    object-fit: cover; /* Mantém a proporção e cobre o espaço */
+    width: 100%; /* Faz a imagem preencher toda a div */
+    height: 100%;
+}

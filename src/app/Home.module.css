@@ -1,0 +1,9 @@
+.main {
+    min-height: 50vh; /* Garante que o main tenha altura suficiente */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+body {
+    overflow-y: auto; /* Garante que o scroll funcione */
+}

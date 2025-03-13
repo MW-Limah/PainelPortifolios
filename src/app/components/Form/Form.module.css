@@ -1,0 +1,96 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 75vh;
+    gap: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 0 auto;
+    box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
+}
+.h2 {
+    margin-bottom: 25px;
+}
+
+.formContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputFormTitle {
+    margin-bottom: 20px;
+}
+.inputFormURL {
+    margin-bottom: 20px;
+}
+
+.customFileUpload {
+    display: inline-block;
+    padding: 10px;
+    width: 45px;
+    background-color: var(--rd-color);
+    color: white;
+    border: 1px solid var(--rd-color);
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.customFileUpload:hover {
+    background-color: var(--st-color);
+    color: var(--fth-color);
+}
+
+.inputForm,
+.inputFormTitle,
+.textareaForm {
+    font-size: 20px;
+    border: 1px solid #818181;
+    background: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.formButton {
+    background: var(--rd-color);
+    color: white;
+    font-size: 12pt;
+    font-weight: 600;
+    width: 50%;
+    align-self: center;
+    padding: 10px;
+    border: 1px solid var(--rd-color);
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.1s ease;
+}
+
+.formButton:hover {
+    border: 1px solid var(--rd-color);
+    background: none;
+    color: var(--fth-color);
+}
+
+.inputFile {
+    font-size: 16px;
+    border: 1px solid #818181;
+    background: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.imagePreview {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
