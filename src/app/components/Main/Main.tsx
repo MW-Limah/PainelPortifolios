@@ -1,44 +1,24 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './Main.module.css';
 import Form from '../Form/Form';
 import BoxItem from '../Items/boxItem/BoxItem';
 
+// Definição do tipo para os itens
 type ItemType = {
-    id: string;
     title: string;
     description: string;
-    image: string;
+    image: string; // Agora aceita somente string (URL da imagem)
 };
 
 export default function Main() {
+    // Inicializando o estado com um array do tipo ItemType
     const [items, setItems] = useState<ItemType[]>([]);
     const [showForm, setShowForm] = useState(false);
 
-    // Buscar itens no banco ao carregar a página
-    useEffect(() => {
-        fetch('/api/items')
-            .then((res) => res.json())
-            .then((data) => {
-                console.log('Itens recebidos:', data);
-                if (Array.isArray(data)) {
-                    setItems(data);
-                } else {
-                    console.error('Erro: resposta inesperada da API', data);
-                }
-            })
-            .catch((err) => console.error('Erro ao buscar itens:', err));
-    }, []);
-    // Adiciona um novo item no banco
-    const addItem = async (item: Omit<ItemType, 'id'>) => {
-        const response = await fetch('/api/items', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(item),
-        });
-        const newItem = await response.json();
-        setItems([newItem, ...items]);
+    const addItem = (item: ItemType) => {
+        setItems([...items, item]);
         setShowForm(false);
     };
 
@@ -66,8 +46,8 @@ export default function Main() {
             )}
 
             <div className={styles.itemsContainer}>
-                {items.map((item) => (
-                    <BoxItem key={item.id || item.title} item={item} />
+                {items.map((item, index) => (
+                    <BoxItem key={index} item={item} />
                 ))}
             </div>
         </div>

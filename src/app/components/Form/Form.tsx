@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from './Form.module.css';
+import { MdFileUpload } from 'react-icons/md';
 
 type ItemType = {
     title: string;
@@ -15,31 +16,30 @@ export default function Form({
 }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [imageUrl, setImageUrl] = useState('');
+    const [image, setImage] = useState<File | null>(null);
+    const [preview, setPreview] = useState<string | null>(null);
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        if (!title || !description || !imageUrl) return;
-
-        // Envia o item diretamente com a URL da imagem
-        const response = await fetch('/api/items', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title, description, image: imageUrl }),
-        });
-
-        if (!response.ok) {
-            alert('Erro ao adicionar item!');
-            return;
+    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0] || null;
+        if (file) {
+            setImage(file);
+            setPreview(URL.createObjectURL(file)); // Cria preview da imagem
         }
+    };
 
-        const newItem = await response.json();
-        onAddItem(newItem);
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!title || !description || !image) return;
 
-        // Limpa os campos do formulário
+        const imageUrl = URL.createObjectURL(image); // Converte File para URL
+        const newItem = { title, description, image: imageUrl };
+
+        onAddItem(newItem); // Passa image como string
+
         setTitle('');
         setDescription('');
-        setImageUrl('');
+        setImage(null);
+        setPreview(null);
     };
 
     return (
@@ -52,16 +52,17 @@ export default function Form({
                 placeholder="Título"
                 required
             />
-
+            <label htmlFor="fileInput" className={styles.customFileUpload}>
+                <MdFileUpload />
+            </label>
             <input
+                id="fileInput"
                 className={styles.inputFormURL}
-                type="text"
-                value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
-                placeholder="URL da imagem"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
                 required
             />
-
             <textarea
                 className={styles.textareaForm}
                 value={description}
@@ -70,17 +71,16 @@ export default function Form({
                 required
             />
 
-            {imageUrl && (
+            {preview && (
                 <Image
-                    src={imageUrl}
+                    src={preview}
                     alt="Preview"
                     width={200}
-                    height={200}
+                    height={0}
                     layout="intrinsic"
                     unoptimized
-                />
+                ></Image>
             )}
-
             <button type="submit" className={styles.formButton}>
                 Adicionar Item
             </button>
