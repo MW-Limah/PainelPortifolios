@@ -1,24 +1,80 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Main.module.css';
 import Form from '../Form/Form';
 import BoxItem from '../Items/boxItem/BoxItem';
+import { supabase } from 'supabaseClient';
 
-// Definição do tipo para os itens
+// Tipo para o Supabase (banco)
+type DBItem = {
+    id: number;
+    title: string;
+    description: string;
+    image_url: string;
+};
+
+// Tipo para o Frontend (componentes)
 type ItemType = {
     title: string;
     description: string;
-    image: string; // Agora aceita somente string (URL da imagem)
+    image: string;
 };
 
 export default function Main() {
-    // Inicializando o estado com um array do tipo ItemType
     const [items, setItems] = useState<ItemType[]>([]);
     const [showForm, setShowForm] = useState(false);
 
-    const addItem = (item: ItemType) => {
-        setItems([...items, item]);
+    // Carrega os itens do Supabase ao iniciar
+    useEffect(() => {
+        const fetchItems = async () => {
+            const { data, error } = await supabase.from('items').select('*');
+            if (error) {
+                console.error('Erro ao buscar itens:', error.message);
+                return;
+            }
+
+            // Converte os itens para o formato esperado no frontend
+            const formattedItems = data?.map((item: DBItem) => ({
+                title: item.title,
+                description: item.description,
+                image: item.image_url,
+            }));
+
+            setItems(formattedItems || []);
+        };
+
+        fetchItems();
+    }, []);
+
+    // Adiciona o item no Supabase e atualiza a lista
+    const addItem = async (item: ItemType) => {
+        const { data, error } = await supabase
+            .from('items')
+            .insert([
+                {
+                    title: item.title,
+                    description: item.description,
+                    image_url: item.image,
+                },
+            ])
+            .select('*')
+            .single();
+
+        if (error) {
+            console.error('Erro ao adicionar item:', error.message);
+            return;
+        }
+
+        // Adiciona o novo item ao estado
+        setItems([
+            ...items,
+            {
+                title: data.title,
+                description: data.description,
+                image: data.image_url,
+            },
+        ]);
         setShowForm(false);
     };
 

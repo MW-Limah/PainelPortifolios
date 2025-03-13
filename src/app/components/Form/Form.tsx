@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import styles from './Form.module.css';
 import { MdFileUpload } from 'react-icons/md';
+import { supabase } from 'supabaseClient';
 
 type ItemType = {
     title: string;
@@ -12,7 +13,7 @@ type ItemType = {
 export default function Form({
     onAddItem,
 }: {
-    onAddItem: (item: ItemType) => void;
+    onAddItem: (item: ItemType) => Promise<void>; // Aceita função assíncrona
 }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -27,14 +28,36 @@ export default function Form({
         }
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!title || !description || !image) return;
 
-        const imageUrl = URL.createObjectURL(image); // Converte File para URL
-        const newItem = { title, description, image: imageUrl };
+        // Upload da imagem
+        const { data, error } = await supabase.storage
+            .from('images')
+            .upload(`public/${image.name}`, image);
 
-        onAddItem(newItem); // Passa image como string
+        if (error) {
+            console.error('Erro ao enviar imagem:', error.message);
+            return;
+        }
+
+        const imageUrl = `${
+            supabase.storage.from('images').getPublicUrl(`public/${image.name}`)
+                .data.publicUrl
+        }`;
+
+        // Envio para o banco de dados
+        const { error: insertError } = await supabase
+            .from('items')
+            .insert([{ title, description, image_url: imageUrl }]);
+
+        if (insertError) {
+            console.error('Erro ao criar item:', insertError.message);
+            return;
+        }
+
+        onAddItem({ title, description, image: imageUrl });
 
         setTitle('');
         setDescription('');
