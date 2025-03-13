@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['jcbgfgsmuymsmwxtcnvd.supabase.co'],
-        domains: ['media.istockphoto.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'jcbgfgsmuymsmwxtcnvd.supabase.co',
+                pathname: '/storage/v1/object/public/images/**',
+            },
+        ],
     },
 };
 

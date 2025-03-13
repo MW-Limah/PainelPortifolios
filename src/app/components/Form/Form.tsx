@@ -32,10 +32,13 @@ export default function Form({
         e.preventDefault();
         if (!title || !description || !image) return;
 
-        // Upload da imagem
+        // Cria um nome único para a imagem
+        const uniqueName = `${Date.now()}_${image.name}`;
+
+        // Upload da imagem com nome único
         const { data, error } = await supabase.storage
             .from('images')
-            .upload(`public/${image.name}`, image);
+            .upload(`public/${uniqueName}`, image);
 
         if (error) {
             console.error('Erro ao enviar imagem:', error.message);
@@ -43,7 +46,7 @@ export default function Form({
         }
 
         const imageUrl = `${
-            supabase.storage.from('images').getPublicUrl(`public/${image.name}`)
+            supabase.storage.from('images').getPublicUrl(`public/${uniqueName}`)
                 .data.publicUrl
         }`;
 
@@ -102,7 +105,7 @@ export default function Form({
                     height={0}
                     layout="intrinsic"
                     unoptimized
-                ></Image>
+                />
             )}
             <button type="submit" className={styles.formButton}>
                 Adicionar Item
