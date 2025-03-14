@@ -4,6 +4,7 @@
     text-align: center;
     height: 80vh;
     display: flex;
+    font-size: 16pt;
 }
 
 .leftSide {
@@ -71,6 +72,8 @@
 }
 
 .Links {
+    display: flex;
+    flex-direction: row;
     color: var(--fth-color);
     font-size: 2rem;
 }
