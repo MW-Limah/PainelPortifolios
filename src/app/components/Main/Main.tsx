@@ -30,128 +30,132 @@ export default function Main() {
     const [editItem, setEditItem] = useState<ItemType | null>(null);
     const [isSelecting, setIsSelecting] = useState(false);
 
-    // Carrega os itens do Supabase ao iniciar
+    // Função para buscar itens do Supabase (para reutilizar após add/edit/delete)
+    const fetchItems = async () => {
+        const { data, error } = await supabase.from('items').select('*');
+        if (error) {
+            console.error('Erro ao buscar itens:', error.message);
+            return;
+        }
+
+        const formattedItems = data?.map((item: DBItem) => ({
+            id: item.id,
+            title: item.title,
+            description: item.description,
+            image: item.image_url,
+        }));
+
+        setItems(formattedItems || []);
+    };
+
+    // Busca itens ao iniciar
     useEffect(() => {
-        const fetchItems = async () => {
-            const { data, error } = await supabase.from('items').select('*');
-            if (error) {
-                console.error('Erro ao buscar itens:', error.message);
-                return;
-            }
-
-            const formattedItems = data?.map((item: DBItem) => ({
-                id: item.id,
-                title: item.title,
-                description: item.description,
-                image: item.image_url,
-            }));
-
-            setItems(formattedItems || []);
-        };
-
         fetchItems();
     }, []);
 
-    // Adiciona ou atualiza item no Supabase e atualiza a lista local
     const addItem = async (item: ItemType) => {
-        if (editItem) {
-            const { error } = await supabase
+        if (item.id) {
+            // Atualiza item no Supabase
+            const { data, error } = await supabase
                 .from('items')
                 .update({
                     title: item.title,
                     description: item.description,
                     image_url: item.image,
                 })
-                .eq('id', editItem.id);
+                .eq('id', item.id);
 
             if (error) {
-                console.error('Erro ao editar item:', error.message);
-                return;
+                console.error('Erro no Supabase:', error.message);
+            } else {
+                console.log('Item atualizado no banco:', data);
             }
-
-            setItems((prevItems) =>
-                prevItems.map((i) => (i.id === editItem.id ? item : i))
-            );
-            setEditItem(null);
         } else {
-            const { data, error } = await supabase
-                .from('items')
-                .insert([
-                    {
-                        title: item.title,
-                        description: item.description,
-                        image_url: item.image,
-                    },
-                ])
-                .select('*')
-                .single();
+            // Adiciona item novo no Supabase
+            const { error } = await supabase.from('items').insert([
+                {
+                    title: item.title,
+                    description: item.description,
+                    image_url: item.image,
+                },
+            ]);
 
             if (error) {
                 console.error('Erro ao adicionar item:', error.message);
                 return;
             }
-
-            const newItem: ItemType = {
-                id: data.id,
-                title: data.title,
-                description: data.description,
-                image: data.image_url,
-            };
-
-            setItems((prevItems) => [...prevItems, newItem]);
         }
 
+        // Recarrega a lista após adicionar ou editar
+        await fetchItems();
+        setEditItem(null);
         setShowForm(false);
+        console.log('Enviando para o banco:', item);
     };
 
-    // Remove item
+    // Remove item do Supabase e recarrega a lista local
     const deleteItem = async (id: number) => {
         const { error } = await supabase.from('items').delete().eq('id', id);
         if (error) {
             console.error('Erro ao remover item:', error.message);
             return;
         }
-        setItems((prevItems) => prevItems.filter((i) => i.id !== id));
+
+        // Recarrega a lista após a remoção
+        await fetchItems();
+        console.log('Deletando item:', id);
     };
 
     return (
         <div className={styles.content}>
+            {/* Botões principais */}
             <div className={styles.buttonContainer}>
+                {/* Botão Adicionar */}
                 <button
                     className={styles.buttonAddItem}
-                    onClick={() => setShowForm(true)}
+                    onClick={() => {
+                        setShowForm(true);
+                        setEditItem(null);
+                    }}
                 >
                     +
                 </button>
+
+                {/* Botão Modo de Seleção */}
                 <button
                     className={styles.buttonSelectMode}
                     onClick={() => setIsSelecting(!isSelecting)}
                 >
-                    <div className={styles.buttonSelectMode} style={{}}>
-                        <TbSelect
-                            className={`${styles.iconTransition} ${
-                                isSelecting ? styles.iconHidden : ''
-                            }`}
-                            style={{
-                                position: 'absolute',
-                                transition:
-                                    'transform 0.2s ease, opacity 0.2s ease',
-                            }}
-                        />
-                        <AiOutlineClose
-                            className={`${styles.iconTransition} ${
-                                !isSelecting ? styles.iconHidden : ''
-                            }`}
-                            style={{
-                                position: 'absolute',
-                                transition:
-                                    'transform 0.2s ease, opacity 0.2s ease',
-                            }}
-                        />
+                    <div
+                        style={{
+                            position: 'relative',
+                            width: '24px',
+                            height: '24px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        {isSelecting ? (
+                            <AiOutlineClose
+                                style={{
+                                    transition:
+                                        'transform 0.2s ease, opacity 0.2s ease',
+                                }}
+                            />
+                        ) : (
+                            <TbSelect
+                                style={{
+                                    transition:
+                                        'transform 0.2s ease, opacity 0.2s ease',
+                                }}
+                            />
+                        )}
                     </div>
                 </button>
             </div>
 
+            {/* Formulário de Adição/Edição */}
             {showForm && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
@@ -172,10 +176,14 @@ export default function Main() {
                 </div>
             )}
 
+            {/* Lista de Itens */}
             <div className={styles.itemsContainer}>
                 {items.map((item) => (
                     <div key={item.id} className={styles.itemWrapper}>
+                        {/* Exibe o BoxItem */}
                         <BoxItem item={item} />
+
+                        {/* Botões de Editar/Remover no modo de seleção */}
                         {isSelecting && (
                             <div className={styles.actionButtons}>
                                 <button
