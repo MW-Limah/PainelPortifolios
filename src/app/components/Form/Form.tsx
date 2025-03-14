@@ -50,16 +50,6 @@ export default function Form({
                 .data.publicUrl
         }`;
 
-        // Envio para o banco de dados
-        const { error: insertError } = await supabase
-            .from('items')
-            .insert([{ title, description, image_url: imageUrl }]);
-
-        if (insertError) {
-            console.error('Erro ao criar item:', insertError.message);
-            return;
-        }
-
         onAddItem({ title, description, image: imageUrl });
 
         setTitle('');
