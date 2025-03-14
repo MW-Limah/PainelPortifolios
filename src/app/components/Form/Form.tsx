@@ -62,8 +62,9 @@ export default function Form({
                 .getPublicUrl(`public/${uniqueName}`).data.publicUrl;
         }
 
+        // Aqui agora o id está sempre sendo enviado, se existir
         await onAddItem({
-            id: editItem?.id, // Garante que a edição funcione corretamente
+            id: editItem?.id,
             title,
             description,
             image: imageUrl,

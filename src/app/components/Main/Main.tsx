@@ -53,10 +53,11 @@ export default function Main() {
         fetchItems();
     }, []);
 
+    // Adiciona ou atualiza item no Supabase e recarrega a lista local
     const addItem = async (item: ItemType) => {
         if (item.id) {
             // Atualiza item no Supabase
-            const { data, error } = await supabase
+            const { error } = await supabase
                 .from('items')
                 .update({
                     title: item.title,
@@ -66,34 +67,42 @@ export default function Main() {
                 .eq('id', item.id);
 
             if (error) {
-                console.error('Erro no Supabase:', error.message);
-            } else {
-                console.log('Item atualizado no banco:', data);
+                console.error('Erro ao editar item:', error.message);
+                return;
             }
+
+            // Atualiza apenas o item no estado local
+            setItems((prevItems) =>
+                prevItems.map((i) => (i.id === item.id ? item : i))
+            );
         } else {
             // Adiciona item novo no Supabase
-            const { error } = await supabase.from('items').insert([
-                {
-                    title: item.title,
-                    description: item.description,
-                    image_url: item.image,
-                },
-            ]);
+            const { data, error } = await supabase
+                .from('items')
+                .insert([
+                    {
+                        title: item.title,
+                        description: item.description,
+                        image_url: item.image,
+                    },
+                ])
+                .select('*')
+                .single();
 
             if (error) {
                 console.error('Erro ao adicionar item:', error.message);
                 return;
             }
+
+            // Adiciona o novo item no estado local
+            setItems((prevItems) => [...prevItems, data]);
         }
 
-        // Recarrega a lista após adicionar ou editar
-        await fetchItems();
         setEditItem(null);
         setShowForm(false);
-        console.log('Enviando para o banco:', item);
     };
 
-    // Remove item do Supabase e recarrega a lista local
+    // Remove item do Supabase e atualiza a lista local
     const deleteItem = async (id: number) => {
         const { error } = await supabase.from('items').delete().eq('id', id);
         if (error) {
@@ -101,11 +110,9 @@ export default function Main() {
             return;
         }
 
-        // Recarrega a lista após a remoção
-        await fetchItems();
-        console.log('Deletando item:', id);
+        // Remove o item do estado local, sem recarregar tudo
+        setItems((prevItems) => prevItems.filter((item) => item.id !== id));
     };
-
     return (
         <div className={styles.content}>
             {/* Botões principais */}
