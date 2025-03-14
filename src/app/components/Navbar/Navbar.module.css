@@ -11,18 +11,18 @@
     align-items: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-  }
-  
-  .logo {
+}
+
+.logo {
     font-size: 1.5rem;
     color: white;
     text-decoration: none;
     font-weight: bold;
     position: absolute;
     left: 20px; /* Mantém a logo alinhada à esquerda */
-  }
-  
-  .navLinks {
+}
+
+.navLinks {
     list-style: none;
     display: flex;
     justify-content: center; /* Centraliza os links */
@@ -30,22 +30,27 @@
     gap: 20px; /* Espaçamento entre os itens */
     margin: 0;
     padding: 0;
-  }
-  
-  .navLinks li {
+}
+
+.navLinks li {
     display: inline-block;
-  }
-  
-  .navLinks a {
+}
+
+.navLinks a {
     color: white;
     text-decoration: none;
     font-size: 1.3rem;
     padding: 8px 12px;
     border-radius: 5px;
     transition: background 0.3s;
-  }
-  
-  .navLinks a:hover {
+}
+
+.navLinks a:hover {
     background: rgba(255, 255, 255, 0.2);
-  }
-  
+}
+
+.img {
+    display: flex;
+    width: 70px;
+    height: 70px;
+}

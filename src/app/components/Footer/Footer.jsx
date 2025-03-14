@@ -11,7 +11,7 @@ export default function Footer() {
         <footer className={styles.footer}>
             <section className={styles.leftSide}>
                 <Image
-                    src="/icon.png"
+                    src="/logoW.png"
                     width={250}
                     height={250}
                     alt="minha logo"
@@ -43,7 +43,6 @@ export default function Footer() {
                     <div className={styles.boxFooter}></div>
                 </div>
                 <div className={styles.bottomFooter}>
-                    <div className={styles.boxFooterCopy}></div>
                     <div className={styles.boxFooterCopy}>
                         &copy; Copyright 2025 | Desenvolvido por{' '}
                         <strong>@MW-Limah</strong>
