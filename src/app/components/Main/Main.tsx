@@ -25,6 +25,8 @@ type ItemType = {
 export default function Main() {
     const [items, setItems] = useState<ItemType[]>([]);
     const [showForm, setShowForm] = useState(false);
+    const [editItem, setEditItem] = useState<ItemType | null>(null);
+    const [isSelecting, setIsSelecting] = useState(false);
 
     // Carrega os itens do Supabase ao iniciar
     useEffect(() => {
@@ -35,7 +37,6 @@ export default function Main() {
                 return;
             }
 
-            // Converte os itens para o formato esperado no frontend
             const formattedItems = data?.map((item: DBItem) => ({
                 id: item.id,
                 title: item.title,
@@ -49,67 +50,127 @@ export default function Main() {
         fetchItems();
     }, []);
 
-    // Adiciona o item no Supabase e atualiza a lista local
+    // Adiciona ou atualiza item no Supabase e atualiza a lista local
     const addItem = async (item: ItemType) => {
-        const { data, error } = await supabase
-            .from('items')
-            .insert([
-                {
+        if (editItem) {
+            const { error } = await supabase
+                .from('items')
+                .update({
                     title: item.title,
                     description: item.description,
                     image_url: item.image,
-                },
-            ])
-            .select('*')
-            .single(); // Pegue apenas o item recém-adicionado
+                })
+                .eq('id', editItem.id);
 
-        if (error) {
-            console.error('Erro ao adicionar item:', error.message);
-            return;
+            if (error) {
+                console.error('Erro ao editar item:', error.message);
+                return;
+            }
+
+            setItems((prevItems) =>
+                prevItems.map((i) => (i.id === editItem.id ? item : i))
+            );
+            setEditItem(null);
+        } else {
+            const { data, error } = await supabase
+                .from('items')
+                .insert([
+                    {
+                        title: item.title,
+                        description: item.description,
+                        image_url: item.image,
+                    },
+                ])
+                .select('*')
+                .single();
+
+            if (error) {
+                console.error('Erro ao adicionar item:', error.message);
+                return;
+            }
+
+            const newItem: ItemType = {
+                id: data.id,
+                title: data.title,
+                description: data.description,
+                image: data.image_url,
+            };
+
+            setItems((prevItems) => [...prevItems, newItem]);
         }
-
-        const newItem: ItemType = {
-            id: data.id,
-            title: data.title,
-            description: data.description,
-            image: data.image_url,
-        };
-
-        // Verifica se o item já está na lista antes de adicionar
-        setItems((prevItems) => {
-            const itemExists = prevItems.some((i) => i.id === newItem.id);
-            return itemExists ? prevItems : [...prevItems, newItem];
-        });
 
         setShowForm(false);
     };
 
+    // Remove item
+    const deleteItem = async (id: number) => {
+        const { error } = await supabase.from('items').delete().eq('id', id);
+        if (error) {
+            console.error('Erro ao remover item:', error.message);
+            return;
+        }
+        setItems((prevItems) => prevItems.filter((i) => i.id !== id));
+    };
+
     return (
         <div className={styles.content}>
-            <button
-                className={styles.buttonAddItem}
-                onClick={() => setShowForm(true)}
-            >
-                +
-            </button>
+            <div className={styles.buttonContainer}>
+                <button
+                    className={styles.buttonAddItem}
+                    onClick={() => setShowForm(true)}
+                >
+                    +
+                </button>
+                <button
+                    className={styles.buttonSelectMode}
+                    onClick={() => setIsSelecting(!isSelecting)}
+                >
+                    {isSelecting
+                        ? 'Sair do Modo de Seleção'
+                        : 'Selecionar Itens'}
+                </button>
+            </div>
 
             {showForm && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
                         <button
                             className={styles.closeButton}
-                            onClick={() => setShowForm(false)}
+                            onClick={() => {
+                                setShowForm(false);
+                                setEditItem(null);
+                            }}
                         >
                             X
                         </button>
-                        <Form onAddItem={addItem} />
+                        <Form
+                            onAddItem={addItem}
+                            editItem={editItem ?? undefined}
+                        />
                     </div>
                 </div>
             )}
 
             <div className={styles.itemsContainer}>
-                {items.map((item, index) => (
-                    <BoxItem key={index} item={item} />
+                {items.map((item) => (
+                    <div key={item.id} className={styles.itemWrapper}>
+                        <BoxItem item={item} />
+                        {isSelecting && (
+                            <div className={styles.actionButtons}>
+                                <button
+                                    onClick={() => {
+                                        setEditItem(item);
+                                        setShowForm(true);
+                                    }}
+                                >
+                                    ✏️
+                                </button>
+                                <button onClick={() => deleteItem(item.id)}>
+                                    🗑️
+                                </button>
+                            </div>
+                        )}
+                    </div>
                 ))}
             </div>
         </div>

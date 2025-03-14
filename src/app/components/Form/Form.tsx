@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './Form.module.css';
 import { MdFileUpload } from 'react-icons/md';
 import { supabase } from 'supabaseClient';
 
 type ItemType = {
+    id?: number;
     title: string;
     description: string;
     image: string; // URL da imagem
@@ -12,45 +13,61 @@ type ItemType = {
 
 export default function Form({
     onAddItem,
+    editItem,
 }: {
-    onAddItem: (item: ItemType) => Promise<void>; // Aceita função assíncrona
+    onAddItem: (item: ItemType) => Promise<void>;
+    editItem?: ItemType | null;
 }) {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [image, setImage] = useState<File | null>(null);
     const [preview, setPreview] = useState<string | null>(null);
 
+    // Preenche os campos quando editItem for passado
+    useEffect(() => {
+        if (editItem) {
+            setTitle(editItem.title);
+            setDescription(editItem.description);
+            setPreview(editItem.image);
+        }
+    }, [editItem]);
+
     const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0] || null;
         if (file) {
             setImage(file);
-            setPreview(URL.createObjectURL(file)); // Cria preview da imagem
+            setPreview(URL.createObjectURL(file));
         }
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!title || !description || !image) return;
+        if (!title || !description) return;
 
-        // Cria um nome único para a imagem
-        const uniqueName = `${Date.now()}_${image.name}`;
+        let imageUrl = editItem?.image || '';
 
-        // Upload da imagem com nome único
-        const { data, error } = await supabase.storage
-            .from('images')
-            .upload(`public/${uniqueName}`, image);
+        if (image) {
+            const uniqueName = `${Date.now()}_${image.name}`;
+            const { data, error } = await supabase.storage
+                .from('images')
+                .upload(`public/${uniqueName}`, image);
 
-        if (error) {
-            console.error('Erro ao enviar imagem:', error.message);
-            return;
+            if (error) {
+                console.error('Erro ao enviar imagem:', error.message);
+                return;
+            }
+
+            imageUrl = supabase.storage
+                .from('images')
+                .getPublicUrl(`public/${uniqueName}`).data.publicUrl;
         }
 
-        const imageUrl = `${
-            supabase.storage.from('images').getPublicUrl(`public/${uniqueName}`)
-                .data.publicUrl
-        }`;
-
-        onAddItem({ title, description, image: imageUrl });
+        await onAddItem({
+            id: editItem?.id, // Garante que a edição funcione corretamente
+            title,
+            description,
+            image: imageUrl,
+        });
 
         setTitle('');
         setDescription('');
@@ -77,7 +94,6 @@ export default function Form({
                 type="file"
                 accept="image/*"
                 onChange={handleImageChange}
-                required
             />
             <textarea
                 className={styles.textareaForm}
@@ -98,7 +114,7 @@ export default function Form({
                 />
             )}
             <button type="submit" className={styles.formButton}>
-                Adicionar Item
+                {editItem ? 'Salvar Alterações' : 'Adicionar Item'}
             </button>
         </form>
     );
