@@ -47,7 +47,7 @@ export default function Main() {
         fetchItems();
     }, []);
 
-    // Adiciona o item no Supabase e atualiza a lista
+    // Adiciona o item no Supabase e atualiza a lista local
     const addItem = async (item: ItemType) => {
         const { data, error } = await supabase
             .from('items')
@@ -59,22 +59,21 @@ export default function Main() {
                 },
             ])
             .select('*')
-            .single();
+            .single(); // Pegue apenas o item recém-adicionado
 
         if (error) {
             console.error('Erro ao adicionar item:', error.message);
             return;
         }
 
-        // Adiciona o novo item ao estado
-        setItems([
-            ...items,
-            {
-                title: data.title,
-                description: data.description,
-                image: data.image_url,
-            },
-        ]);
+        // Atualiza a lista local sem duplicar
+        const newItem: ItemType = {
+            title: data.title,
+            description: data.description,
+            image: data.image_url,
+        };
+
+        setItems((prevItems) => [...prevItems, newItem]);
         setShowForm(false);
     };
 
