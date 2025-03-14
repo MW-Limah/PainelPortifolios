@@ -16,6 +16,7 @@ type DBItem = {
 
 // Tipo para o Frontend (componentes)
 type ItemType = {
+    id: number;
     title: string;
     description: string;
     image: string;
@@ -36,6 +37,7 @@ export default function Main() {
 
             // Converte os itens para o formato esperado no frontend
             const formattedItems = data?.map((item: DBItem) => ({
+                id: item.id,
                 title: item.title,
                 description: item.description,
                 image: item.image_url,
@@ -66,14 +68,19 @@ export default function Main() {
             return;
         }
 
-        // Atualiza a lista local sem duplicar
         const newItem: ItemType = {
+            id: data.id,
             title: data.title,
             description: data.description,
             image: data.image_url,
         };
 
-        setItems((prevItems) => [...prevItems, newItem]);
+        // Verifica se o item já está na lista antes de adicionar
+        setItems((prevItems) => {
+            const itemExists = prevItems.some((i) => i.id === newItem.id);
+            return itemExists ? prevItems : [...prevItems, newItem];
+        });
+
         setShowForm(false);
     };
 
