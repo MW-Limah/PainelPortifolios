@@ -7,10 +7,6 @@
 .buttonAddItem {
     display: flex;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    align-self: center;
-    margin-top: 80px;
     padding: 15px;
     width: 60px;
     border: none;
@@ -21,6 +17,7 @@
     border: 1px solid var(--rd-color);
     transition: all 0.2s ease-in-out;
     cursor: pointer;
+    margin: 30px 20px;
 }
 
 .buttonAddItem:hover {
@@ -62,4 +59,72 @@
     border: none;
     font-size: 20px;
     cursor: pointer;
+}
+
+.buttonSelectMode {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    font-size: 16pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--th-color);
+    border: none;
+    transition: all 1s ease-in-out;
+    border-radius: 50%;
+    margin: 30px 20px;
+}
+
+.iconTransition {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 1;
+}
+
+.iconHidden {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btnEdit {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    font-size: 16pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--nd-color);
+    border: none;
+    transition: all 1s ease-in-out;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0px 20px;
+}
+.btnDelete {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    font-size: 16pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--sth-color);
+    border: none;
+    transition: all 1s ease-in-out;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0px 20px;
+}
+
+.actionButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }

@@ -5,6 +5,8 @@ import styles from './Main.module.css';
 import Form from '../Form/Form';
 import BoxItem from '../Items/boxItem/BoxItem';
 import { supabase } from 'supabaseClient';
+import { TbSelect } from 'react-icons/tb';
+import { AiOutlineClose } from 'react-icons/ai';
 
 // Tipo para o Supabase (banco)
 type DBItem = {
@@ -125,9 +127,28 @@ export default function Main() {
                     className={styles.buttonSelectMode}
                     onClick={() => setIsSelecting(!isSelecting)}
                 >
-                    {isSelecting
-                        ? 'Sair do Modo de Seleção'
-                        : 'Selecionar Itens'}
+                    <div className={styles.buttonSelectMode} style={{}}>
+                        <TbSelect
+                            className={`${styles.iconTransition} ${
+                                isSelecting ? styles.iconHidden : ''
+                            }`}
+                            style={{
+                                position: 'absolute',
+                                transition:
+                                    'transform 0.2s ease, opacity 0.2s ease',
+                            }}
+                        />
+                        <AiOutlineClose
+                            className={`${styles.iconTransition} ${
+                                !isSelecting ? styles.iconHidden : ''
+                            }`}
+                            style={{
+                                position: 'absolute',
+                                transition:
+                                    'transform 0.2s ease, opacity 0.2s ease',
+                            }}
+                        />
+                    </div>
                 </button>
             </div>
 
@@ -158,6 +179,7 @@ export default function Main() {
                         {isSelecting && (
                             <div className={styles.actionButtons}>
                                 <button
+                                    className={styles.btnEdit}
                                     onClick={() => {
                                         setEditItem(item);
                                         setShowForm(true);
@@ -165,7 +187,10 @@ export default function Main() {
                                 >
                                     ✏️
                                 </button>
-                                <button onClick={() => deleteItem(item.id)}>
+                                <button
+                                    className={styles.btnDelete}
+                                    onClick={() => deleteItem(item.id)}
+                                >
                                     🗑️
                                 </button>
                             </div>
