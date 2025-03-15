@@ -12,8 +12,8 @@ export default function Footer() {
             <section className={styles.leftSide}>
                 <Image
                     src="/logoW.png"
-                    width={250}
-                    height={250}
+                    width={180}
+                    height={180}
                     alt="minha logo"
                 ></Image>
             </section>

@@ -3,9 +3,9 @@
     position: fixed; /* Fixa no topo */
     top: 0;
     left: 0;
-    font-size: 16pt;
+    font-size: 14pt;
     background-color: var(--nd-color); /* Cor de fundo */
-    padding: 25px 20px;
+    padding: 28px 20px;
     display: flex;
     justify-content: center; /* Centraliza os elementos no navbar */
     align-items: center;

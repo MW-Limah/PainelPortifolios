@@ -8,7 +8,7 @@ const Header = () => {
         <header className={styles.header}>
             <section className={styles.headerContentRight}>
                 <div className={styles.txtHeader}>
-                    <h1>Desenvolvimento de Portfólios</h1>
+                    <h1>Desenvolvimento Web</h1>
                     <p>Por @Williams D'Lima</p>
                 </div>
                 <div className={styles.btnHeader}>
