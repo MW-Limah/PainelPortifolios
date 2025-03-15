@@ -5,7 +5,7 @@ import { MdFileUpload } from 'react-icons/md';
 import { supabase } from 'supabaseClient';
 
 type ItemType = {
-    id?: number;
+    id?: string; // ✅ Alterado de number para string
     title: string;
     description: string;
     image: string; // URL da imagem
@@ -62,9 +62,8 @@ export default function Form({
                 .getPublicUrl(`public/${uniqueName}`).data.publicUrl;
         }
 
-        // Aqui agora o id está sempre sendo enviado, se existir
         await onAddItem({
-            id: editItem?.id,
+            id: editItem?.id, // Certifica-se de que o ID é passado corretamente
             title,
             description,
             image: imageUrl,

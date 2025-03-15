@@ -8,33 +8,32 @@ import { supabase } from 'supabaseClient';
 import { TbSelect } from 'react-icons/tb';
 import { AiOutlineClose } from 'react-icons/ai';
 
-// Tipo para o Supabase (banco)
 type DBItem = {
-    id: number;
+    id: string; // UUID como string
     title: string;
     description: string;
     image_url: string;
 };
 
-// Tipo para o Frontend (componentes)
 type ItemType = {
-    id: number;
+    id: string; // ✅ Garantir que id seja string
     title: string;
     description: string;
     image: string;
 };
-
 export default function Main() {
     const [items, setItems] = useState<ItemType[]>([]);
     const [showForm, setShowForm] = useState(false);
     const [editItem, setEditItem] = useState<ItemType | null>(null);
     const [isSelecting, setIsSelecting] = useState(false);
 
-    // Função para buscar itens do Supabase (para reutilizar após add/edit/delete)
+    // 🔍 Busca itens do Supabase e atualiza o estado
     const fetchItems = async () => {
+        console.log('🔄 Buscando itens do Supabase...');
         const { data, error } = await supabase.from('items').select('*');
+
         if (error) {
-            console.error('Erro ao buscar itens:', error.message);
+            console.error('❌ Erro ao buscar itens:', error.message);
             return;
         }
 
@@ -45,18 +44,20 @@ export default function Main() {
             image: item.image_url,
         }));
 
+        console.log('✅ Itens carregados:', formattedItems);
         setItems(formattedItems || []);
     };
 
-    // Busca itens ao iniciar
     useEffect(() => {
         fetchItems();
     }, []);
 
-    // Adiciona ou atualiza item no Supabase e recarrega a lista local
+    // 📝 Adiciona ou Atualiza um item no Supabase
     const addItem = async (item: ItemType) => {
+        console.log(`🛠️ Operação em item ID: ${item.id || '(novo item)'}`);
+
         if (item.id) {
-            // Atualiza item no Supabase
+            // Editar item existente
             const { error } = await supabase
                 .from('items')
                 .update({
@@ -67,16 +68,13 @@ export default function Main() {
                 .eq('id', item.id);
 
             if (error) {
-                console.error('Erro ao editar item:', error.message);
+                console.error('❌ Erro ao editar item:', error.message);
                 return;
             }
 
-            // Atualiza apenas o item no estado local
-            setItems((prevItems) =>
-                prevItems.map((i) => (i.id === item.id ? item : i))
-            );
+            console.log(`✅ Item ${item.id} atualizado com sucesso!`);
         } else {
-            // Adiciona item novo no Supabase
+            // Adicionar novo item
             const { data, error } = await supabase
                 .from('items')
                 .insert([
@@ -90,29 +88,33 @@ export default function Main() {
                 .single();
 
             if (error) {
-                console.error('Erro ao adicionar item:', error.message);
+                console.error('❌ Erro ao adicionar item:', error.message);
                 return;
             }
 
-            // Adiciona o novo item no estado local
-            setItems((prevItems) => [...prevItems, data]);
+            console.log(`✅ Novo item adicionado:`, data);
         }
 
+        await fetchItems(); // Atualiza lista após edição/adição
         setEditItem(null);
         setShowForm(false);
     };
 
-    // Remove item do Supabase e atualiza a lista local
-    const deleteItem = async (id: number) => {
+    // 🗑️ Remove um item do Supabase
+    const deleteItem = async (id: string) => {
+        console.log(`🗑️ Tentando remover item ID: ${id}`);
+
         const { error } = await supabase.from('items').delete().eq('id', id);
+
         if (error) {
-            console.error('Erro ao remover item:', error.message);
+            console.error('❌ Erro ao remover item:', error.message);
             return;
         }
 
-        // Remove o item do estado local, sem recarregar tudo
-        setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+        console.log(`✅ Item ${id} removido com sucesso!`);
+        await fetchItems(); // Atualiza lista após remoção
     };
+
     return (
         <div className={styles.content}>
             {/* Botões principais */}
@@ -196,6 +198,9 @@ export default function Main() {
                                 <button
                                     className={styles.btnEdit}
                                     onClick={() => {
+                                        console.log(
+                                            `✏️ Editando item ID: ${item.id}`
+                                        );
                                         setEditItem(item);
                                         setShowForm(true);
                                     }}
@@ -204,7 +209,12 @@ export default function Main() {
                                 </button>
                                 <button
                                     className={styles.btnDelete}
-                                    onClick={() => deleteItem(item.id)}
+                                    onClick={() => {
+                                        console.log(
+                                            `🗑️ Deletando item ID: ${item.id}`
+                                        );
+                                        deleteItem(item.id);
+                                    }}
                                 >
                                     🗑️
                                 </button>
