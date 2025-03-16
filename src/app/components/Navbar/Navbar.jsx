@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 import Image from 'next/image';
 import styles from './Navbar.module.css';
 
@@ -13,9 +13,21 @@ export default function Navbar() {
         setIsActive(!isActive);
     };
 
+    // Fecha o menu ao clicar fora dele
+    useEffect(() => {
+        const closeMenu = (e) => {
+            if (isActive && !e.target.closest(`.${styles.navbarContent}`)) {
+                setIsActive(false);
+            }
+        };
+
+        document.addEventListener('click', closeMenu);
+        return () => document.removeEventListener('click', closeMenu);
+    }, [isActive]);
+
     return (
         <nav className={styles.navbar}>
-            <div className={styles.maxWidth}>
+            <div className={styles.navbarContent}>
                 {/* Logo */}
                 <div className={styles.logoContainer}>
                     <Link href="/" className={styles.logo}>
@@ -29,14 +41,9 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* Menu - Centralizado */}
+                {/* Menu */}
                 <div className={styles.menuContainer}>
-                    <ul
-                        className={`${styles.menu} ${
-                            isActive ? styles.active : ''
-                        }`}
-                        id="menuSite"
-                    >
+                    <ul className={`${styles.menu} ${isActive ? styles.active : ''}`} id="menuSite">
                         <li>
                             <Link href="/">Home</Link>
                         </li>
@@ -49,7 +56,7 @@ export default function Navbar() {
                     </ul>
                 </div>
 
-                {/* Botão Mobile */}
+                {/* Botão FaBars */}
                 <div className={styles.menuBtn} onClick={toggleMenu}>
                     {isActive ? 'X' : <FaBars style={{ color: 'white' }} />}
                 </div>
