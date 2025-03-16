@@ -70,3 +70,55 @@
     width: 100%; /* Faz a imagem preencher toda a div */
     height: 100%;
 }
+
+@media (max-width: 768px) {
+    /* Header */
+    .header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        padding: 0 5%;
+        text-align: center;
+
+        /* Background */
+        background: url('/background.jpeg') center/cover no-repeat;
+    }
+
+    /* Conteúdo Central */
+    .headerContentRight {
+        margin-top: 200px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .headerContentRight h1 {
+        font-size: 24pt;
+        line-height: 1.3;
+        margin: 50px 0 10px 0;
+        word-break: break-word;
+        color: var(--st-color);
+    }
+
+    .headerContentRight p {
+        color: var(--st-color);
+        font-size: 1.2rem;
+        margin-top: 200px;
+        position: relative;
+        top: 100px;
+    }
+
+    /* Botões */
+    .txtHeader,
+    .btnHeader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .btnHeader {
+        margin-left: 20px;
+    }
+}
