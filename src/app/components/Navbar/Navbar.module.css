@@ -107,4 +107,8 @@
         display: block;
         margin: 15px 0;
     }
+
+    .logoContainer {
+        margin: 15px 0 10px;
+    }
 }

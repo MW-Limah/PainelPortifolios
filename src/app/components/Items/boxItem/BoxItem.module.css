@@ -25,7 +25,7 @@
 
 /* Estiliza os links */
 .itemDescription a {
-    color: var(--fth-color);
+    color: rgb(53, 53, 180);
     text-decoration: underline;
     cursor: pointer;
 }
