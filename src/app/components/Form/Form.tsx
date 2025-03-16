@@ -48,18 +48,14 @@ export default function Form({
 
         if (image) {
             const uniqueName = `${Date.now()}_${image.name}`;
-            const { data, error } = await supabase.storage
-                .from('images')
-                .upload(`public/${uniqueName}`, image);
+            const { data, error } = await supabase.storage.from('images').upload(`public/${uniqueName}`, image);
 
             if (error) {
                 console.error('Erro ao enviar imagem:', error.message);
                 return;
             }
 
-            imageUrl = supabase.storage
-                .from('images')
-                .getPublicUrl(`public/${uniqueName}`).data.publicUrl;
+            imageUrl = supabase.storage.from('images').getPublicUrl(`public/${uniqueName}`).data.publicUrl;
         }
 
         await onAddItem({
@@ -85,9 +81,6 @@ export default function Form({
                 placeholder="Título"
                 required
             />
-            <label htmlFor="fileInput" className={styles.customFileUpload}>
-                <MdFileUpload />
-            </label>
             <input
                 id="fileInput"
                 className={styles.inputFormURL}
@@ -102,17 +95,11 @@ export default function Form({
                 placeholder="Descrição"
                 required
             />
+            <label htmlFor="fileInput" className={styles.customFileUpload}>
+                <MdFileUpload />
+            </label>
 
-            {preview && (
-                <Image
-                    src={preview}
-                    alt="Preview"
-                    width={200}
-                    height={0}
-                    layout="intrinsic"
-                    unoptimized
-                />
-            )}
+            {preview && <Image src={preview} alt="Preview" width={200} height={0} layout="intrinsic" unoptimized />}
             <button type="submit" className={styles.formButton}>
                 {editItem ? 'Salvar Alterações' : 'Adicionar Item'}
             </button>

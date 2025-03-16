@@ -107,10 +107,7 @@ export default function Main() {
                 >
                     +
                 </button>
-                <button
-                    className={styles.buttonSelectMode}
-                    onClick={() => setIsSelecting(!isSelecting)}
-                >
+                <button className={styles.buttonSelectMode} onClick={() => setIsSelecting(!isSelecting)}>
                     {isSelecting ? <AiOutlineClose /> : <TbSelect />}
                 </button>
             </div>
@@ -127,10 +124,7 @@ export default function Main() {
                         >
                             X
                         </button>
-                        <Form
-                            onAddItem={addItem}
-                            editItem={editItem ?? undefined}
-                        />
+                        <Form onAddItem={addItem} editItem={editItem ?? undefined} />
                     </div>
                 </div>
             )}

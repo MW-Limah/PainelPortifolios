@@ -1,9 +1,5 @@
 /* Estilizar box */
 
-.itemTitle {
-    font-size: 2em;
-}
-
 .itemContent {
     display: flex;
     justify-content: space-around;
@@ -12,6 +8,9 @@
     height: 50rem;
 }
 
+.itemTitle {
+    font-size: 2em;
+}
 .itemDescription {
     font-size: 16pt;
     display: flex;
@@ -36,4 +35,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 1300px) {
+    .itemContent {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        margin: 10px;
+    }
+    .itemTitle {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+    .itemDescription {
+        font-size: 12pt;
+        text-align: justify;
+        width: 100%;
+    }
+
+    .itemTexts {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .imgBox {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
