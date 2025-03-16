@@ -13,6 +13,12 @@ const markdownToHtml = (text: string) => {
     return html.replace(/\n/g, '<br />');
 };
 
+// Função para transformar links em <a> clicáveis
+const parseLinks = (text: string) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+};
+
 export default function BoxItem({ item }: { item: ItemType }) {
     return (
         <div className={style.itemContent}>

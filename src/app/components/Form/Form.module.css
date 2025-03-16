@@ -51,6 +51,14 @@
     color: var(--fth-color);
 }
 
+/* Estilo dos links dentro do textarea */
+.descriptionPreview a {
+    color: var(--fth-color);
+    text-decoration: underline;
+    cursor: pointer;
+    word-break: break-word;
+}
+
 .inputForm,
 .inputFormTitle,
 .textareaForm {
@@ -60,6 +68,13 @@
     background: none;
     border-radius: 5px;
     padding: 10px;
+}
+
+.textareaForm a {
+    color: var(--fth-color);
+    text-decoration: underline;
+    cursor: pointer;
+    word-break: break-word;
 }
 
 .formButton {

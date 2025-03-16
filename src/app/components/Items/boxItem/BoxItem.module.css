@@ -11,11 +11,23 @@
 .itemTitle {
     font-size: 2em;
 }
+/* Formatação correta do Markdown */
 .itemDescription {
     font-size: 16pt;
-    display: flex;
-    height: 80%;
-    align-items: flex-start;
+    text-align: justify;
+    color: var(--fth-color);
+}
+
+/* Garante espaçamento adequado entre os parágrafos */
+.itemDescription p {
+    margin-bottom: 10px;
+}
+
+/* Estiliza os links */
+.itemDescription a {
+    color: var(--fth-color);
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 .itemTexts {
