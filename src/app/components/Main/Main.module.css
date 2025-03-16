@@ -71,9 +71,11 @@
     align-items: center;
     background-color: var(--th-color);
     border: none;
-    transition: all 1s ease-in-out;
+    transition: all 0.2s ease-in-out;
     border-radius: 50%;
     margin: 30px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .iconTransition {
