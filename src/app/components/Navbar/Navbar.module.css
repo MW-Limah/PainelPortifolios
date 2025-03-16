@@ -1,42 +1,45 @@
+/* Container do Navbar */
+.maxWidth {
+    max-width: 1800px;
+    padding: 0 5px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* ✅ Separa a logo e o menu */
+}
+
+/* Navbar */
 .navbar {
-    width: 100vw; /* Ocupa toda a largura da tela */
-    position: fixed; /* Fixa no topo */
+    width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
-    font-size: 14pt;
-    background-color: var(--nd-color); /* Cor de fundo */
+    background-color: var(--nd-color);
     padding: 28px 20px;
     display: flex;
-    justify-content: center; /* Centraliza os elementos no navbar */
+    justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    border-bottom: solid var(--thrid-color) 1px;
 }
-
-.logo {
-    font-size: 1.5rem;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    position: absolute;
-    left: 20px; /* Mantém a logo alinhada à esquerda */
-}
-
-.navLinks {
+/* Menu Desktop */
+.menu {
     list-style: none;
     display: flex;
-    justify-content: center; /* Centraliza os links */
+    justify-content: center;
     align-items: center;
-    gap: 20px; /* Espaçamento entre os itens */
+    gap: 20px;
     margin: 0;
     padding: 0;
+    transition: all 0.3s ease-in-out;
 }
 
-.navLinks li {
+/* Links */
+.menu li {
     display: inline-block;
 }
 
-.navLinks a {
+.menu li a {
     color: white;
     text-decoration: none;
     font-size: 1.3rem;
@@ -45,18 +48,73 @@
     transition: background 0.3s;
 }
 
-.navLinks a:hover {
+/* Hover */
+.menu li a:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
-.img {
-    display: flex;
-    width: 70px;
-    height: 70px;
+/* Botão Mobile */
+.menuBtn {
+    color: var(--font-color);
+    font-size: 23px;
+    cursor: pointer;
+    display: none;
+    position: relative;
+    left: 180px;
+}
+.logo {
+    position: relative;
+    right: 280px;
 }
 
-/* @media (max-width: 768px) {
-    .navbar {
+/* Responsividade */
+@media (max-width: 947px) {
+    .logo {
+        position: relative;
+        right: 180px;
+    }
+    /* Botão aparece no mobile */
+    .navbar .maxWidth {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .menuBtn {
+        display: block;
+        z-index: 999;
+        position: relative;
+        left: 180px;
+    }
+
+    /* Menu escondido por padrão */
+    .navbar .menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        left: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 50px;
+        transition: all 0.3s ease-in-out;
+        z-index: 998;
+    }
+
+    /* Mostra o menu quando ativo */
+    .navbar .menu.active {
+        left: 0;
+    }
+
+    /* Links no centro */
+    .navbar .menu li {
+        display: block;
+        margin: 15px 0;
+    }
+
+    .navbar .menu li a {
+        font-size: 20px;
     }
 }
- */
