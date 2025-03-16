@@ -67,6 +67,10 @@
     right: 280px;
 }
 
+.menuBtn svg {
+    color: white;
+}
+
 /* Responsividade */
 @media (max-width: 947px) {
     .logo {
@@ -84,6 +88,7 @@
         z-index: 999;
         position: relative;
         left: 100px;
+        color: var(--st-color);
     }
 
     /* Menu escondido por padrão */

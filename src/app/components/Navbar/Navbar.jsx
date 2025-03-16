@@ -47,7 +47,7 @@ export default function Navbar() {
 
                 {/* Botão Mobile */}
                 <div className={styles.menuBtn} onClick={toggleMenu}>
-                    {isActive ? <FaTimes /> : <FaBars />}
+                    {isActive ? 'X' : <FaBars style={{ color: 'white' }} />}
                 </div>
             </div>
         </nav>
