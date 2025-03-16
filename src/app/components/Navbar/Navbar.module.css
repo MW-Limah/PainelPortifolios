@@ -71,7 +71,7 @@
 @media (max-width: 947px) {
     .logo {
         position: relative;
-        right: 180px;
+        right: 120px;
     }
     /* Botão aparece no mobile */
     .navbar .maxWidth {
@@ -83,7 +83,7 @@
         display: block;
         z-index: 999;
         position: relative;
-        left: 180px;
+        left: 100px;
     }
 
     /* Menu escondido por padrão */
