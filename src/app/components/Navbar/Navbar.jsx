@@ -44,13 +44,13 @@ export default function Navbar() {
                 {/* Menu */}
                 <div className={styles.menuContainer}>
                     <ul className={`${styles.menu} ${isActive ? styles.active : ''}`} id="menuSite">
-                        <li>
+                        <li className={styles.li}>
                             <Link href="/">Home</Link>
                         </li>
-                        <li>
+                        <li className={styles.li}>
                             <Link href="/projects">Projetos</Link>
                         </li>
-                        <li>
+                        <li className={styles.li}>
                             <Link href="/contact">Contato</Link>
                         </li>
                     </ul>

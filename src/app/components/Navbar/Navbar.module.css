@@ -18,19 +18,19 @@
     margin: 10px 0 10px 0;
 }
 
-.menuContainer li {
+.menuContainer .li {
     display: inline-block;
     font-size: 1.3rem;
     padding: 10px 18px;
 }
 
-.menuContainer li a {
+.menuContainer .li a {
     transition: all 0.3s;
     padding: 5px;
     background: none;
     color: var(--st-color);
 }
-li a:hover {
+.li a:hover {
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.1);
 }
@@ -100,8 +100,8 @@ li a:hover {
         z-index: 998;
     }
 
-    /* Links no centro */
-    .navbar .menu li {
+    /* .Links no centro */
+    .navbar .menu .li {
         display: block;
         margin: 15px 0;
     }
