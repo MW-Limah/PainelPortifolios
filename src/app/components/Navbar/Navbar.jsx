@@ -17,33 +17,37 @@ export default function Navbar() {
         <nav className={styles.navbar}>
             <div className={styles.maxWidth}>
                 {/* Logo */}
-                <Link href="/" className={styles.logo}>
-                    <Image
-                        src={'/logoW.png'}
-                        width={50}
-                        height={50}
-                        alt="minha logo versão branca"
-                        className={styles.img}
-                    />
-                </Link>
+                <div className={styles.logoContainer}>
+                    <Link href="/" className={styles.logo}>
+                        <Image
+                            src={'/logoW.png'}
+                            width={80}
+                            height={80}
+                            alt="minha logo versão branca"
+                            className={styles.img}
+                        />
+                    </Link>
+                </div>
 
-                {/* Menu */}
-                <ul
-                    className={`${styles.menu} ${
-                        isActive ? styles.active : ''
-                    }`}
-                    id="menuSite"
-                >
-                    <li>
-                        <Link href="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link href="/projects">Projetos</Link>
-                    </li>
-                    <li>
-                        <Link href="/contact">Contato</Link>
-                    </li>
-                </ul>
+                {/* Menu - Centralizado */}
+                <div className={styles.menuContainer}>
+                    <ul
+                        className={`${styles.menu} ${
+                            isActive ? styles.active : ''
+                        }`}
+                        id="menuSite"
+                    >
+                        <li>
+                            <Link href="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link href="/projects">Projetos</Link>
+                        </li>
+                        <li>
+                            <Link href="/contact">Contato</Link>
+                        </li>
+                    </ul>
+                </div>
 
                 {/* Botão Mobile */}
                 <div className={styles.menuBtn} onClick={toggleMenu}>

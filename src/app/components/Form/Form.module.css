@@ -10,6 +10,7 @@
     border-radius: 5px;
     margin: 0 auto;
     box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.1);
+    color: var(--fth-color);
 }
 .h2 {
     margin-bottom: 25px;
@@ -23,6 +24,7 @@
 
 .inputFormTitle {
     margin-bottom: 20px;
+    color: var(--fth-color);
 }
 .inputFormURL {
     display: none;
@@ -51,6 +53,7 @@
 .inputForm,
 .inputFormTitle,
 .textareaForm {
+    color: var(--fth-color);
     font-size: 20px;
     border: 1px solid #818181;
     background: none;

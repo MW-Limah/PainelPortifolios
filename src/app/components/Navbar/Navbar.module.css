@@ -1,37 +1,31 @@
 /* Container do Navbar */
 .maxWidth {
     max-width: 1800px;
-    padding: 0 5px;
     margin: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* ✅ Separa a logo e o menu */
 }
 
-/* Navbar */
 .navbar {
-    width: 100%;
+    display: flex;
+    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 999;
     background-color: var(--nd-color);
-    padding: 28px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
     border-bottom: solid var(--thrid-color) 1px;
 }
-/* Menu Desktop */
+/* Menu */
 .menu {
-    list-style: none;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     margin: 0;
     padding: 0;
-    transition: all 0.3s ease-in-out;
 }
 
 /* Links */
@@ -64,11 +58,17 @@
 }
 .logo {
     position: relative;
-    right: 280px;
 }
 
 .menuBtn svg {
     color: white;
+}
+
+.logoContainer {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    right: 100%;
 }
 
 /* Responsividade */
@@ -77,12 +77,29 @@
         position: relative;
         right: 120px;
     }
+    .navbar {
+        justify-content: space-between;
+    }
     /* Botão aparece no mobile */
     .navbar .maxWidth {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+
+    .menu {
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        top: 0;
+        left: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        justify-content: center;
+        transition: all 0.3s ease-in-out;
+        z-index: 998;
+    }
+
     .menuBtn {
         display: block;
         z-index: 999;
@@ -108,7 +125,6 @@
         z-index: 998;
     }
 
-    /* Mostra o menu quando ativo */
     .navbar .menu.active {
         left: 0;
     }

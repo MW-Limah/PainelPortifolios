@@ -32,7 +32,7 @@ export default function BoxItem({ item }: { item: ItemType }) {
                     <Image
                         src={item.image}
                         alt={item.title}
-                        width={672} // Ajuste conforme necessário
+                        width={1000} // Ajuste conforme necessário
                         height={200} // Ajuste conforme necessário
                         layout="intrinsic"
                     />

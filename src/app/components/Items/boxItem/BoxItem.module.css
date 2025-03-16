@@ -9,19 +9,7 @@
     justify-content: space-around;
     align-items: center;
     background-color: var(--st-color);
-    margin: 10px 0px;
     height: 50rem;
-}
-
-.itemTexts {
-    width: 80%;
-    height: 90%;
-    padding: 25px;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
 }
 
 .itemDescription {
@@ -31,8 +19,19 @@
     align-items: flex-start;
 }
 
+.itemTexts {
+    width: 50%;
+    height: 90%;
+    padding: 25px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
 .imgBox {
-    background-color: rgba(0, 0, 0, 0.4);
+    width: 50%;
     height: 100%;
     display: flex;
     justify-content: center;

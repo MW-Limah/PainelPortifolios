@@ -1,5 +1,4 @@
 import styles from './Footer.module.css';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaWhatsappSquare } from 'react-icons/fa';
 import { FaGithubSquare } from 'react-icons/fa';
@@ -9,56 +8,64 @@ import { FaInstagramSquare } from 'react-icons/fa';
 export default function Footer() {
     return (
         <footer className={styles.footer}>
-            <section className={styles.leftSide}>
-                <Image
-                    src="/logoW.png"
-                    width={180}
-                    height={180}
-                    alt="minha logo"
-                ></Image>
-            </section>
-            <section className={styles.rightSide}>
-                <h1 className={styles.titleFooter}>
-                    MEU PAINEL DE PORTIFÓLIOS
-                </h1>
-                <div className={styles.contentFooter}>
-                    <div className={styles.boxFooter}>
-                        <h4>Me conheça</h4>
-                        <Link href={'#'}>Quem sou eu?</Link>
-                        <Link href={'#'}>Context</Link>
-                        <Link href={'#'}>Contate-me</Link>
+            <div className={styles.container}>
+                <ul>
+                    <h3>MWLima Dev</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Asperiores maxime non perspiciatis cum? Quia esse
+                        distinctio, asperiores incidunt inventore corrupti
+                    </p>
+                    <div className={styles.redesSociais}>
+                        <FaWhatsappSquare className={styles.img} />
+                        <FaGithubSquare className={styles.img} />
+                        <FaLinkedin className={styles.img} />
+                        <FaInstagramSquare className={styles.img} />
                     </div>
-                    <div className={styles.boxFooter}>
-                        <h4>Outros projetos</h4>
-                        <Link
-                            href={' https://mw-limah.github.io/NewTo-doList/'}
-                            target="_blank"
-                        >
-                            Lista de Tarefas - CRUD
-                        </Link>
-                        <Link href={'#'}>PolyTraduz</Link>
-                        <Link href={'#'}>Automatizações com Python</Link>
-                    </div>
-
-                    <div className={styles.boxFooter}></div>
-                </div>
-                <div className={styles.bottomFooter}>
-                    <div className={styles.boxFooterCopy}>
-                        &copy; Copyright 2025 | Desenvolvido por{' '}
-                        <strong>@MW-Limah</strong>
-                    </div>
-                    <div className={styles.boxFooterCopy}>
-                        <div className={styles.Links}>
-                            <Link href={'https://webportifolio.onrender.com'}>
-                                <FaInstagramSquare />
-                            </Link>
-                            <FaGithubSquare />
-                            <FaLinkedin />
-                            <FaWhatsappSquare />
-                        </div>
-                    </div>
-                </div>
-            </section>
+                </ul>
+                <ul>
+                    <h3>Link</h3>
+                    <li>
+                        <Link href={'#'}>Home</Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}>Sobre</Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}>Serviços</Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}>Preços</Link>
+                    </li>
+                </ul>
+                <ul>
+                    <h3>Suporte</h3>
+                    <li>
+                        <Link href={'#'}>FAQ</Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}>Como funciona?</Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}>Características</Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}>Contato</Link>
+                    </li>
+                </ul>
+                <ul>
+                    <h3>Entre em contato</h3>
+                    <li>
+                        <Link href={'#'}>+44 1234567890</Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}>email@gmail.com</Link>
+                    </li>
+                    <li>
+                        <Link href={'#'}>Brasil</Link>
+                    </li>
+                </ul>
+            </div>
         </footer>
     );
 }
