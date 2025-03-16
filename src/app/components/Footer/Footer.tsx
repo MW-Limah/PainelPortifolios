@@ -9,61 +9,81 @@ export default function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
-                <ul>
+                <ul className={styles.fstBox}>
                     <h3>MWLima Dev</h3>
                     <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Asperiores maxime non perspiciatis cum? Quia esse
-                        distinctio, asperiores incidunt inventore corrupti
+                        Sou um desenvolvedor independente com a aspiração ao crescimento contínuo e a busca pela
+                        excelência em cada projeto.
                     </p>
-                    <div className={styles.redesSociais}>
-                        <FaWhatsappSquare className={styles.img} />
-                        <FaGithubSquare className={styles.img} />
-                        <FaLinkedin className={styles.img} />
-                        <FaInstagramSquare className={styles.img} />
-                    </div>
                 </ul>
                 <ul>
                     <h3>Link</h3>
                     <li>
-                        <Link href={'#'}>Home</Link>
+                        <Link href={'#'} target="_blank">
+                            Home
+                        </Link>
                     </li>
                     <li>
-                        <Link href={'#'}>Sobre</Link>
+                        <Link href={'#'} target="_blank">
+                            Sobre
+                        </Link>
                     </li>
                     <li>
-                        <Link href={'#'}>Serviços</Link>
+                        <Link href={'#'} target="_blank">
+                            Serviços
+                        </Link>
                     </li>
                     <li>
-                        <Link href={'#'}>Preços</Link>
+                        <Link href={'#'} target="_blank">
+                            Preços
+                        </Link>
                     </li>
                 </ul>
                 <ul>
                     <h3>Suporte</h3>
                     <li>
-                        <Link href={'#'}>FAQ</Link>
+                        <Link href={'#'} target="_blank">
+                            FAQ
+                        </Link>
                     </li>
                     <li>
-                        <Link href={'#'}>Como funciona?</Link>
+                        <Link href={'#'} target="_blank">
+                            Como funciona?
+                        </Link>
                     </li>
                     <li>
-                        <Link href={'#'}>Características</Link>
+                        <Link href={'#'} target="_blank">
+                            Características
+                        </Link>
                     </li>
                     <li>
-                        <Link href={'#'}>Contato</Link>
+                        <Link href={'#'} target="_blank">
+                            Contato
+                        </Link>
                     </li>
                 </ul>
                 <ul>
                     <h3>Entre em contato</h3>
-                    <li>
-                        <Link href={'#'}>+44 1234567890</Link>
-                    </li>
-                    <li>
-                        <Link href={'#'}>email@gmail.com</Link>
-                    </li>
-                    <li>
-                        <Link href={'#'}>Brasil</Link>
-                    </li>
+                    <li>+44 1234567890</li>
+                    <li>mwlima.dev@gmail.com</li>
+                    <li>Endereço</li>
+                    <div className={styles.redesSociais}>
+                        <Link href={'#'} target="_blank">
+                            <FaWhatsappSquare className={styles.img} />
+                        </Link>
+                        <Link href={'https://github.com/MW-Limah'} target="_blank">
+                            <FaGithubSquare className={styles.img} />
+                        </Link>
+                        <Link
+                            href={'https://www.linkedin.com/in/mauricio-de-lima-b20251347/?locale=en_US'}
+                            target="_blank"
+                        >
+                            <FaLinkedin className={styles.img} />
+                        </Link>
+                        <Link href={'https://www.instagram.com/mwlima.dev/'} target="_blank">
+                            <FaInstagramSquare className={styles.img} />
+                        </Link>
+                    </div>
                 </ul>
             </div>
         </footer>

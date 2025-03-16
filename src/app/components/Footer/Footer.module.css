@@ -21,7 +21,9 @@
 
 .container .redesSociais .img {
     margin-right: 10px;
+    margin-top: 10px;
     font-size: 2rem;
+    cursor: pointer;
 }
 
 .container ul > p {
@@ -30,10 +32,16 @@
 
 .container li {
     margin: 10px 0;
+    list-style: none;
 }
 
 .container a {
     color: white;
+}
+
+.fstBox {
+    padding-right: 30px;
+    text-align: justify;
 }
 
 @media (max-width: 768px) {
@@ -44,5 +52,9 @@
     .container ul {
         width: 100%;
         margin: 10px 10px;
+    }
+
+    .container ul > p {
+        margin-bottom: 5px;
     }
 }
