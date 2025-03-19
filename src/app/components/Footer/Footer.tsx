@@ -57,9 +57,7 @@ export default function Footer() {
                         </Link>
                     </li>
                     <li>
-                        <Link href={'#'} target="_blank">
-                            Contato
-                        </Link>
+                        <Link href="/contact">Contato</Link>
                     </li>
                 </ul>
                 <ul>
