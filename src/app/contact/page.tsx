@@ -38,6 +38,7 @@ export default function ContactPage() {
                         <input type="text" placeholder="Assunto" />
                         <h6>Me fale sobre sua ideia</h6>
                         <input type="text" placeholder="Mensagem" />
+                        <button>Enviar</button>
                     </form>
                 </div>
             </div>

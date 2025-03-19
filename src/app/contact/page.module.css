@@ -2,6 +2,7 @@
     height: 100vh;
     width: 100%;
     display: flex;
+    justify-content: center;
 }
 
 /* Lado esquerdo */
@@ -12,11 +13,13 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    padding: 5rem 0;
 }
 
 .textLeft {
     margin: 5rem;
+    position: relative;
+    right: 10%;
+    top: 15%;
 }
 
 .pLeft {
@@ -28,6 +31,11 @@
     font-size: 16pt;
 }
 
+.textLeftB {
+    position: relative;
+    bottom: 10%;
+}
+
 /* Fim lado esquerdo */
 /* Lado direito */
 .rightContent {
@@ -35,7 +43,6 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    background-color: var(--Fnd-color);
 }
 
 .formulario {
@@ -44,11 +51,105 @@
     align-items: center;
     flex-direction: column;
     margin-top: 100px;
-    height: 80vh;
-    width: 80%;
-    border-radius: 25px;
+    height: 70vh;
+    width: 50%;
+    border-radius: 35px;
     border: 1px solid;
     background-color: var(--stnd-color);
 }
 
+.formulario input {
+    width: 80%;
+    padding: 20px;
+    margin: 10px;
+    background: none;
+    border-radius: 12px;
+    border: 1px solid #000;
+    font-size: 16pt;
+}
+
+.formulario h1 {
+    margin-bottom: 30px;
+}
+
+.formulario h6 {
+    margin-top: 20px;
+    width: 80%;
+    font-size: 14pt;
+    text-align: left;
+}
+
+.formulario button {
+    padding: 15px;
+    width: 10rem;
+    font-size: 14pt;
+    border-radius: 12px;
+    background: none;
+    color: #000;
+    border: 1px solid #000;
+    align-self: flex-end;
+    margin: 10px 10%;
+}
 /* Fim lado direito */
+
+@media (max-width: 1630px) {
+    .container {
+        height: 100vh;
+        margin-top: 200px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .textLeftB {
+        margin-top: 10%;
+    }
+
+    .formulario {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 50px;
+        margin-bottom: 60px;
+        height: 70vh;
+        width: 40%;
+    }
+
+    .formulario input {
+        width: 80%;
+        padding: 15px;
+        margin: 10px;
+        background: none;
+        border-radius: 12px;
+        border: 1px solid #000;
+        font-size: 16pt;
+    }
+}
+
+@media (max-width: 380px) {
+    .textLeft {
+        width: 80%;
+        margin-right: 20px;
+    }
+    .textLeft h1 {
+        font-size: 16pt;
+    }
+
+    .textLeftB {
+        margin-top: 25%;
+        font-size: 10pt;
+        text-align: center;
+    }
+    .formulario {
+        width: 80%;
+    }
+
+    .formulario input {
+        padding: 10px;
+    }
+    .formulario button {
+        padding: 10px;
+    }
+}
