@@ -6,9 +6,8 @@ import Form from '../Form/Form';
 import BoxItem from '../Items/boxItem/BoxItem';
 import ConfirmDelete from '../PopUps/ConfirmDelete/ConfirmDelete';
 import { supabase } from 'supabaseClient';
-import { TbSelect } from 'react-icons/tb';
-import { AiOutlineClose } from 'react-icons/ai';
-import DevTool from '@/app/components/DevTool/DevTool';
+
+/* import DevTool from '@/app/components/DevTool/DevTool'; */
 
 type DBItem = {
     id: string;
@@ -98,12 +97,12 @@ export default function Main() {
 
     return (
         <div className={styles.content}>
-            <DevTool
+            {/* <DevTool
                 isSelecting={isSelecting}
                 setIsSelecting={setIsSelecting}
                 setShowForm={setShowForm}
                 setEditItem={setEditItem}
-            />
+            /> */}
 
             {showForm && (
                 <div className={styles.modalOverlay}>
