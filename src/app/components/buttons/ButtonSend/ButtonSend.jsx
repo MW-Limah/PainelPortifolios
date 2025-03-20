@@ -13,10 +13,10 @@ export default function ButtonSend() {
         const form = e.target.closest('form');
         const formData = new FormData(form);
         const data = {
-            name: formData.get('Nome'),
-            email: formData.get('E-mail'),
-            subject: formData.get('Assunto'),
-            message: formData.get('Mensagem'),
+            name: formData.get('name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message'),
         };
 
         try {

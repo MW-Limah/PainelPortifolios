@@ -32,11 +32,11 @@ export default function ContactPage() {
                 <div className={styles.rightContent}>
                     <form className={styles.formulario} action="">
                         <h1>Entre em contato</h1>
-                        <input type="text" placeholder="Nome" />
-                        <input type="text" placeholder="E-mail" />
-                        <input type="text" placeholder="Assunto" />
+                        <input type="text" name="name" placeholder="Nome" />
+                        <input type="text" name="email" placeholder="E-mail" />
+                        <input type="text" name="subject" placeholder="Assunto" />
                         <h6>Me fale sobre sua ideia</h6>
-                        <input type="text" placeholder="Mensagem" />
+                        <input type="text" name="message" placeholder="Mensagem" />
                         <ButtonSend />
                     </form>
                 </div>
