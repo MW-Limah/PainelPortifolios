@@ -1,9 +1,8 @@
 import Navbar from '@/app/components/Navbar/Navbar';
 import styles from './page.module.css';
+import ButtonSend from '@/app/components/buttons/ButtonSend/ButtonSend';
 import { RiWhatsappFill } from 'react-icons/ri';
-
 import { AiFillInstagram } from 'react-icons/ai';
-
 import { MdEmail } from 'react-icons/md';
 
 export default function ContactPage() {
@@ -38,7 +37,7 @@ export default function ContactPage() {
                         <input type="text" placeholder="Assunto" />
                         <h6>Me fale sobre sua ideia</h6>
                         <input type="text" placeholder="Mensagem" />
-                        <button>Enviar</button>
+                        <ButtonSend />
                     </form>
                 </div>
             </div>
