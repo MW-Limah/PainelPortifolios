@@ -62,7 +62,7 @@
     width: 80%;
     padding: 20px;
     margin: 10px;
-    background: none;
+    background: var(--st-color);
     border-radius: 12px;
     border: 1px solid #000;
     color: #000;
