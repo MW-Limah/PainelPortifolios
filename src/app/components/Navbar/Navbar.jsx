@@ -25,6 +25,19 @@ export default function Navbar() {
         return () => document.removeEventListener('click', closeMenu);
     }, [isActive]);
 
+    const scrollToProjects = () => {
+        const projectsSection = document.getElementById('projects');
+        if (projectsSection) {
+            const offset = -100; // Ajuste fino, negativo sobe mais
+            const top = projectsSection.getBoundingClientRect().top + window.scrollY + offset;
+
+            window.scrollTo({
+                top: top,
+                behavior: 'smooth', // Deve funcionar no Chrome, Firefox e Edge
+            });
+        }
+    };
+
     return (
         <nav className={styles.navbar}>
             <div className={styles.navbarContent}>
@@ -48,7 +61,9 @@ export default function Navbar() {
                             <Link href="/">Home</Link>
                         </li>
                         <li className={styles.li}>
-                            <Link href="/projects">Projetos</Link>
+                            <a href="#projects" onClick={scrollToProjects}>
+                                Projetos
+                            </a>
                         </li>
                         <li className={styles.li}>
                             <Link href="/contact">Contato</Link>

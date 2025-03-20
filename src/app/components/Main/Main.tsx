@@ -138,7 +138,6 @@ export default function Main() {
                     onCancel={() => setShowConfirm(false)}
                 />
             )}
-
             <div className={styles.itemsContainer}>
                 {items.map((item) => (
                     <div key={item.id} className={styles.itemWrapper}>

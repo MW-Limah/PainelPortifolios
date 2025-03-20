@@ -21,7 +21,7 @@ const parseLinks = (text: string) => {
 
 export default function BoxItem({ item }: { item: ItemType }) {
     return (
-        <div className={style.itemContent}>
+        <div id="projects" className={style.itemContent}>
             <div className={style.itemTexts}>
                 <h3 className={style.itemTitle}>{item.title}</h3>
                 <div className={style.itemDescription}>
