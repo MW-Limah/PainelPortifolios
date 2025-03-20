@@ -2,3 +2,4 @@
 node_modules
 .next/trace
 .next
+.env.local
