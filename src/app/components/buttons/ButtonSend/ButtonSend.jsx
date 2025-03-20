@@ -19,6 +19,13 @@ export default function ButtonSend() {
             message: formData.get('message'),
         };
 
+        // Verificação de campos vazios
+        if (!data.name || !data.email || !data.subject || !data.message) {
+            alert('Por favor, preencha todos os campos antes de enviar.');
+            setLoading(false);
+            return;
+        }
+
         try {
             const response = await fetch('/api/sendEmail', {
                 method: 'POST',
@@ -27,7 +34,9 @@ export default function ButtonSend() {
             });
 
             if (response.ok) {
-                alert('E-mail enviado com sucesso!');
+                alert(
+                    'E-mail enviado com sucesso! Obrigado por entrar em contato. Irei responder em breve, não esqueça de verificar a caixa de spam.'
+                );
                 form.reset();
             } else {
                 alert('Erro ao enviar o e-mail.');
