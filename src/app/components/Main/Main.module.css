@@ -4,27 +4,6 @@
     background-color: var(--stnd-color);
 }
 
-.buttonAddItem {
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-    width: 60px;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--rd-color);
-    color: white;
-    font-size: 16pt;
-    border: 1px solid var(--rd-color);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    margin: 30px 20px;
-}
-
-.buttonAddItem:hover {
-    background-color: var(--st-color);
-    color: var(--fth-color);
-}
-
 /* Fundo escuro ao fundo do modal */
 .modalOverlay {
     position: absolute;
@@ -62,23 +41,6 @@
     color: var(--fth-color);
 }
 
-.buttonSelectMode {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    font-size: 16pt;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--th-color);
-    border: none;
-    transition: all 0.2s ease-in-out;
-    border-radius: 50%;
-    margin: 30px 20px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
 .iconTransition {
     transition: transform 0.2s ease, opacity 0.2s ease;
     opacity: 1;
@@ -87,13 +49,6 @@
 .iconHidden {
     opacity: 0;
     transform: scale(0.8);
-}
-
-.buttonContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: var(--st-color);
 }
 
 .btnEdit {

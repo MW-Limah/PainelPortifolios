@@ -8,6 +8,7 @@ import ConfirmDelete from '../PopUps/ConfirmDelete/ConfirmDelete';
 import { supabase } from 'supabaseClient';
 import { TbSelect } from 'react-icons/tb';
 import { AiOutlineClose } from 'react-icons/ai';
+import DevTool from '@/app/components/DevTool/DevTool';
 
 type DBItem = {
     id: string;
@@ -97,20 +98,12 @@ export default function Main() {
 
     return (
         <div className={styles.content}>
-            <div className={styles.buttonContainer}>
-                <button
-                    className={styles.buttonAddItem}
-                    onClick={() => {
-                        setShowForm(true);
-                        setEditItem(null);
-                    }}
-                >
-                    +
-                </button>
-                <button className={styles.buttonSelectMode} onClick={() => setIsSelecting(!isSelecting)}>
-                    {isSelecting ? <AiOutlineClose /> : <TbSelect />}
-                </button>
-            </div>
+            <DevTool
+                isSelecting={isSelecting}
+                setIsSelecting={setIsSelecting}
+                setShowForm={setShowForm}
+                setEditItem={setEditItem}
+            />
 
             {showForm && (
                 <div className={styles.modalOverlay}>
