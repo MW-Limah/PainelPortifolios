@@ -1,70 +1,41 @@
 .navbar {
-    max-width: 100vw;
     width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--nd-color);
-    z-index: 999; /* Garante que a navbar fique acima de outros elementos */
-}
-
-.navbarContent {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    max-height: 92px;
+    padding: 30px 40px;
 }
 
-.logoContainer {
-    position: relative;
-    left: 1.5rem;
-    margin: 10px 0 10px 0;
+.menu {
+    display: flex;
+    list-style: none;
 }
 
-.menuContainer .li {
-    display: inline-block;
-    font-size: 1.3rem;
-    padding: 10px 10px;
+.menu li {
+    padding: 30px 0;
+    margin-right: 3rem;
+    font-weight: 600;
 }
-
-.menuContainer .li a {
-    transition: all 0.3s;
-    padding: 5px;
-    background: none;
-    color: var(--st-color);
-}
-.li a:hover {
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Botão FaBars */
 
 .menuBtn {
-    position: relative;
-    visibility: collapse;
-    right: 2%;
-    font-size: 20pt;
-    cursor: pointer;
+    display: none;
 }
-/* Media para abrir o menu por meio do botão FaBars */
+
 @media (max-width: 768px) {
-    .navbar .menu.active {
-        left: 0;
-    }
-
     .menuBtn {
-        visibility: visible;
-        color: var(--st-color);
-        z-index: 1000;
+        display: block;
+        margin-top: 30px;
+        font-size: 18pt;
     }
 
+    .menu li {
+        color: white;
+        margin: 15px 0;
+        text-align: center;
+    }
     .menu {
         position: fixed;
         height: 100vh;
-        width: 100vw;
+        width: 100%;
         top: 0;
         left: 100%;
         background-color: rgba(0, 0, 0, 0.9);
@@ -76,13 +47,7 @@
         z-index: 998;
     }
 
-    /* .Links no centro */
-    .navbar .menu .li {
-        display: block;
-        margin: 15px 0;
-    }
-
-    .logoContainer {
-        margin: 8px 0 10px;
+    .menu.active {
+        left: 0;
     }
 }

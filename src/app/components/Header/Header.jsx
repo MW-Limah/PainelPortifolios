@@ -8,23 +8,13 @@ const Header = () => {
         <header className={styles.header}>
             <section className={styles.headerContentRight}>
                 <div className={styles.txtHeader}>
-                    <h1>Desenvolvimento Web</h1>
+                    <h1>Desenvolvimento de Software</h1>
                     <p>Por @Williams D'Lima</p>
                 </div>
                 <div className={styles.btnHeader}>
                     <BtnAbout />
-                    <BtnContact />
                 </div>
             </section>
-            <div className={styles.asideLeft}>
-                <Image
-                    className={styles.image}
-                    src="/background.jpeg"
-                    alt="Imagem de background"
-                    width={600}
-                    height={900}
-                />
-            </div>
         </header>
     );
 };

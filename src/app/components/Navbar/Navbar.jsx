@@ -40,41 +40,39 @@ export default function Navbar() {
 
     return (
         <nav className={styles.navbar}>
-            <div className={styles.navbarContent}>
-                {/* Logo */}
-                <div className={styles.logoContainer}>
-                    <Link href="/" className={styles.logo}>
-                        <Image
-                            src={'/logoW.png'}
-                            width={80}
-                            height={80}
-                            alt="minha logo versão branca"
-                            className={styles.img}
-                        />
-                    </Link>
-                </div>
+            {/* Logo */}
+            <div className={styles.logoContainer}>
+                <Link href="/" className={styles.logo}>
+                    <Image
+                        src={'/favicon.png'}
+                        width={80}
+                        height={80}
+                        alt="minha logo versão branca"
+                        className={styles.img}
+                    />
+                </Link>
+            </div>
 
-                {/* Menu */}
-                <div className={styles.menuContainer}>
-                    <ul className={`${styles.menu} ${isActive ? styles.active : ''}`} id="menuSite">
-                        <li className={styles.li}>
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li className={styles.li}>
-                            <a href="#projects" onClick={scrollToProjects}>
-                                Projetos
-                            </a>
-                        </li>
-                        <li className={styles.li}>
-                            <Link href="/contact">Contato</Link>
-                        </li>
-                    </ul>
-                </div>
+            {/* Menu */}
+            <div className={styles.menuContainer}>
+                <ul className={`${styles.menu} ${isActive ? styles.active : ''}`} id="menuSite">
+                    <li className={styles.li}>
+                        <Link href="/">Home</Link>
+                    </li>
+                    <li className={styles.li}>
+                        <a href="#projects" onClick={scrollToProjects}>
+                            Projetos
+                        </a>
+                    </li>
+                    <li className={styles.li}>
+                        <Link href="/contact">Contato</Link>
+                    </li>
+                </ul>
+            </div>
 
-                {/* Botão FaBars */}
-                <div className={styles.menuBtn} onClick={toggleMenu}>
-                    {isActive ? 'X' : <FaBars style={{ color: 'white' }} />}
-                </div>
+            {/* Botão FaBars */}
+            <div className={styles.menuBtn} onClick={toggleMenu}>
+                {isActive ? 'X' : <FaBars style={{ color: 'black' }} />}
             </div>
         </nav>
     );
