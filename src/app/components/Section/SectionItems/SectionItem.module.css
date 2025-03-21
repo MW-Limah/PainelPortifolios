@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 5rem;
     margin-top: 5rem;
     width: 100%;
     padding: 0 40px; /* Alinha com o header */
@@ -78,9 +77,10 @@
         width: 25rem;
     }
 }
-@media (max-width: 350px) {
+@media (max-width: 365px) {
     .img {
-        width: 20rem;
+        width: 18rem;
+        height: 16rem;
     }
 
     .article h2 {
