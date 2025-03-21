@@ -1,122 +1,23 @@
 .header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 60vh;
-    overflow: hidden; /* Evita que a imagem ultrapasse a área */
-    color: var(--fth-color);
-}
-
-.headerContentRight {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-    z-index: 1;
-    padding: 20px;
-    width: 50%; /* Define a largura do texto */
-}
-
-.headerContentRight h1 {
-    font-size: 40pt;
-    margin: 0;
-    line-height: 1.2;
-    word-break: break-word;
-}
-
-.headerContentRight p {
-    font-size: 1.8rem;
-    margin-top: 50px;
-    position: relative;
-    top: 100px;
+    width: 100%;
+    height: 30%;
+    padding: 40px;
+    margin-bottom: 20px;
 }
 
 .txtHeader {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    text-align: left;
-    width: 100%;
-    padding-left: 5%;
+    font-size: 24px;
+    margin-top: 20px;
+    padding-bottom: 20px;
 }
 
-.btnHeader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: left;
-    width: 100%;
-    padding-left: 5%;
-    position: relative;
-    top: 120px;
-}
-
-.asideLeft {
-    position: relative;
-    top: 0;
-    left: 100px; /* Cola a imagem no canto direito */
-    width: 50%; /* Faz a imagem preencher o espaço restante */
-    height: 100%;
-    z-index: -1; /* Move a imagem para o fundo */
-}
-
-.image {
-    object-fit: cover; /* Mantém a proporção e cobre o espaço */
-    width: 100%; /* Faz a imagem preencher toda a div */
-    height: 100%;
+.txtHeader p {
+    color: #363636;
+    margin-top: 40px;
 }
 
 @media (max-width: 768px) {
-    /* Header */
     .header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        padding: 0 5%;
-        text-align: center;
-
-        /* Background */
-        background: url('/background.jpeg') center/cover no-repeat;
-    }
-
-    /* Conteúdo Central */
-    .headerContentRight {
-        margin-top: 200px;
-        width: 100%;
-        text-align: center;
-    }
-
-    .headerContentRight h1 {
-        font-size: 30pt;
-        line-height: 1.5;
-        margin: 30px 0 10px 0;
-        word-break: normal;
-        color: var(--st-color);
-    }
-
-    .headerContentRight p {
-        color: var(--st-color);
-        font-size: 1.2rem;
-        position: relative;
-        top: 100px;
-    }
-
-    /* Botões */
-    .txtHeader,
-    .btnHeader {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .btnHeader {
-        margin-left: 20px;
-        margin-bottom: 50px;
+        margin-bottom: 100px;
     }
 }
