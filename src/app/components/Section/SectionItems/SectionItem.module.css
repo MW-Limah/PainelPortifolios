@@ -77,10 +77,23 @@
         width: 25rem;
     }
 }
-@media (max-width: 365px) {
+@media (max-width: 397px) {
     .img {
         width: 18rem;
-        height: 16rem;
+        height: 18rem;
+    }
+
+    .article h2 {
+        font-size: 16pt;
+    }
+    .article p {
+        font-size: 14pt;
+    }
+}
+@media (max-width: 365px) {
+    .img {
+        width: 15rem;
+        height: 15rem;
     }
 
     .article h2 {

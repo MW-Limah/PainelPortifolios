@@ -31,3 +31,10 @@
         font-size: 12pt;
     }
 }
+
+@media (max-width: 270px) {
+    .txtHeader {
+        font-size: 10pt;
+        flex: w;
+    }
+}
