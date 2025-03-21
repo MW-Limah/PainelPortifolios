@@ -3,7 +3,7 @@ import Image from 'next/image';
 export default function SectionItem() {
     return (
         <section className={styles.sectionItem}>
-            <div className={styles.sectionContent}>
+            <div className={styles.sectionHeader}>
                 <h1>Serviços</h1>
             </div>
             <div className={styles.sectionContent}>
