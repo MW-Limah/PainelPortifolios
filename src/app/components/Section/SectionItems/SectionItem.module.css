@@ -1,0 +1,43 @@
+.sectionItem {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+}
+
+.sectionContent {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.sectionContent h1 {
+    font-size: 30pt;
+    margin-bottom: 50px;
+}
+
+.img {
+    width: auto;
+    height: 60%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.article {
+    width: 33%;
+}
+
+.article h2 {
+    font-weight: 500;
+    margin-top: 10px;
+}
+.article p {
+    width: 80%;
+    font-size: 18pt;
+    margin-top: 10px;
+    line-height: 2rem;
+    letter-spacing: 1px;
+    color: var(--stnd-color);
+}
