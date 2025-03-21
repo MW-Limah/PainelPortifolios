@@ -56,7 +56,6 @@
         flex-direction: column;
         justify-content: space-around;
         height: 100%;
-        margin: 10px;
     }
     .itemTitle {
         font-size: 1.5em;

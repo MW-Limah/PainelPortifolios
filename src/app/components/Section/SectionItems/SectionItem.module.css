@@ -78,3 +78,15 @@
         width: 25rem;
     }
 }
+@media (max-width: 350px) {
+    .img {
+        width: 20rem;
+    }
+
+    .article h2 {
+        font-size: 16pt;
+    }
+    .article p {
+        font-size: 14pt;
+    }
+}

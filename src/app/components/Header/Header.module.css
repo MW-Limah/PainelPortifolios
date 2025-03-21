@@ -25,3 +25,9 @@
         font-size: 18px;
     }
 }
+
+@media (max-width: 350px) {
+    .txtHeader {
+        font-size: 12pt;
+    }
+}
