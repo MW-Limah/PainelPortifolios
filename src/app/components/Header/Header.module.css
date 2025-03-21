@@ -20,4 +20,8 @@
     .header {
         margin-bottom: 100px;
     }
+
+    .txtHeader {
+        font-size: 18px;
+    }
 }
