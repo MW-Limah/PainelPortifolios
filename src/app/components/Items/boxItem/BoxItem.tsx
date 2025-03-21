@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import style from './BoxItem.module.css';
 import { marked } from 'marked';
+import BtnVisit from '@/app/components/buttons/ButtonVisit/ButtonVisit';
 
 type ItemType = {
     title: string;
