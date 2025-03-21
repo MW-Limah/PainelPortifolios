@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 
 // Metadados da página
 export const metadata: Metadata = {
-    title: 'Meu painel de portifólios',
+    title: 'Desenvolvimento Web MwLima.dev',
     description:
         'Meu projeto para divulgar trabalhos de desenvolvimento web, focado em criar portifolios para todo aquele que quiser divulgar seu trabalho por meio da internet!',
     icons: {
@@ -30,9 +30,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en">
-            <body className={`${geistSans.variable} ${geistMono.variable}`}>
-                {children}
-            </body>
+            <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
         </html>
     );
 }

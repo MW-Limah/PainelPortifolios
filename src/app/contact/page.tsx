@@ -14,11 +14,11 @@ export default function ContactPage() {
                     <div className={styles.textLeft}>
                         <h1>Vamos trabalhar juntos?</h1>
                         <div className={styles.pLeft}>
+                            {/*  <p>
+                                <RiWhatsappFill /> +44 7386-797717
+                            </p> */}
                             <p>
-                                <RiWhatsappFill /> +44 1234-56789
-                            </p>
-                            <p>
-                                <MdEmail /> email@gmail.com
+                                <MdEmail /> mwlima.dev@gmail.com
                             </p>
                             <p>
                                 <AiFillInstagram /> mwlima.dev
