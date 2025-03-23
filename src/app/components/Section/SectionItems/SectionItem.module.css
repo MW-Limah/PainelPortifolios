@@ -17,11 +17,10 @@
 
 .sectionContent {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
     text-align: left;
     width: 100%;
-    gap: 20px;
 }
 
 .article {
@@ -59,6 +58,15 @@
     .img {
         height: 25rem;
     }
+
+    .sectionContent {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        text-align: left;
+        width: 100%;
+        gap: 20px;
+    }
 }
 
 @media (max-width: 1400px) {
@@ -94,6 +102,10 @@
     .img {
         width: 15rem;
         height: 15rem;
+    }
+
+    .sectionHeader {
+        font-size: 16pt;
     }
 
     .article h2 {

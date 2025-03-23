@@ -16,7 +16,7 @@ export default function Footer() {
                         excelência em cada projeto.
                     </p>
                 </ul>
-                <ul>
+                <ul className={styles.sdBox}>
                     <h3>Link</h3>
                     <li>
                         <Link href={'#'} target="_blank">
@@ -39,7 +39,7 @@ export default function Footer() {
                         </Link>
                     </li>
                 </ul>
-                <ul>
+                <ul className={styles.sdBox}>
                     <h3>Suporte</h3>
                     <li>
                         <Link href={'#'} target="_blank">
@@ -60,7 +60,7 @@ export default function Footer() {
                         <Link href="/contact">Contato</Link>
                     </li>
                 </ul>
-                <ul>
+                <ul className={styles.sdBox}>
                     <h3>Entre em contato</h3>
                     <li>+44 1234567890</li>
                     <li>mwlima.dev@gmail.com</li>
