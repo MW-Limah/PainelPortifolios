@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { FaBars } from 'react-icons/fa';
 import Image from 'next/image';
 import styles from './Navbar.module.css';
+import { FaBars } from 'react-icons/fa';
+import { IoCloseSharp } from 'react-icons/io5';
 
 export default function Navbar() {
     const [isActive, setIsActive] = useState(false);
@@ -72,7 +73,7 @@ export default function Navbar() {
 
             {/* Botão FaBars */}
             <div className={styles.menuBtn} onClick={toggleMenu}>
-                {isActive ? 'X' : <FaBars style={{ color: 'black' }} />}
+                {isActive ? <IoCloseSharp /> : <FaBars style={{ color: 'black' }} />}
             </div>
         </nav>
     );
