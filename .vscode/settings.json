@@ -20,3 +20,10 @@
     }
   }
   
+<button>➔</button>
+760
+
+wJtiPxWeWE7aDFvf
+
+
+((bucket_id = 'box_items'::text) AND (storage.extension(name) = 'jpg'::text) AND (lower((storage.foldername(name))[1]) = 'public'::text) AND (auth.role() = 'authenticated'::text))
